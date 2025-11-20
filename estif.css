@@ -68,3 +68,26 @@ img {
     text-decoration:none;
 
 }
+/* Celulares (pantallas pequeñas) */
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .box {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  img {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 10px;
+  }
+
+  #g, #b {
+    width: 100%;
+    text-align: center;
+  }
+}
+
