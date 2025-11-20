@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #f6d365, #fda085);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .contenedor {
+      background: #fff;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+      width: 350px;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 15px;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+    input {
+      width: 60px;
+      padding: 5px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+
+    .total {
+      font-weight: bold;
+      font-size: 18px;
+      margin-top: 15px;
+      color: #222;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #b{
+    margin-top:15px; 
+    display:inline-block; 
+    padding:12px 25px; 
+    font-size:18px; 
+    border-radius:10px; 
+    background: #72e372;
+    color: white; 
+    text-decoration:none;
+}
+  </style>
+</head>
+<body>
+  <div class="contenedor">
+    <h2>💵 Sistema Contable</h2>
+    <table>
+      <tr>
+        <th>Billete</th>
+        <th>Cantidad</th>
+        <th>Subtotal</th>
+      </tr>
+      <tr>
+        <td>$20</td>
+        <td><input type="number" id="b20" value="0" min="0" oninput="calcular()"></td>
+        <td id="s20">$0</td>
+      </tr>
+      <tr>
+        <td>$50</td>
+        <td><input type="number" id="b50" value="0" min="0" oninput="calcular()"></td>
+        <td id="s50">$0</td>
+      </tr>
+      <tr>
+        <td>$100</td>
+        <td><input type="number" id="b100" value="0" min="0" oninput="calcular()"></td>
+        <td id="s100">$0</td>
+      </tr>
+      <tr>
+        <td>$200</td>
+        <td><input type="number" id="b200" value="0" min="0" oninput="calcular()"></td>
+        <td id="s200">$0</td>
+      </tr>
+      <tr>
+        <td>$500</td>
+        <td><input type="number" id="b500" value="0" min="0" oninput="calcular()"></td>
+        <td id="s500">$0</td>
+      </tr>
+      <tr>
+        <td>$1,000</td>
+        <td><input type="number" id="b1000" value="0" min="0" oninput="calcular()"></td>
+        <td id="s1000">$0</td>
+      </tr>
+    </table>
+
+    <div class="total">TOTAL: <span id="total">$0</span></div>
+    <button onclick="limpiar()">Limpiar</button><br>
+    <a id="b" href="index.html">Regresar</a><br><br>
+  </div>
+
+  <script>
+    function calcular() {
+      // Valores de cada billete
+      const valores = { 
+        b20: 20, 
+        b50: 50, 
+        b100: 100, 
+        b200: 200, 
+        b500: 500, 
+        b1000: 1000 
+      };
+
+      let total = 0;
+
+      for (let id in valores) {
+        let cantidad = parseInt(document.getElementById(id).value) || 0;
+        let subtotal = cantidad * valores[id];
+        document.getElementById("s" + id.substring(1)).innerText = "$" + subtotal.toLocaleString();
+        total += subtotal;
+      }
+
+      document.getElementById("total").innerText = "$" + total.toLocaleString();
+    }
+
+    function limpiar() {
+      document.querySelectorAll("input").forEach(input => input.value = 0);
+      document.querySelectorAll("td[id]").forEach(td => td.innerText = "$0");
+      document.getElementById("total").innerText = "$0";
+    }
+  </script>
+</body>
+</html>

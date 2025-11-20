@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Seis Secciones Persistentes con Fotos</title>
+<link rel="stylesheet" href="estif.css">
+</head>
+<body>
+<h1>EXPEDIENTES UTIM "UATV" 💚</h1>
+
+<a id="b" href="index.html">Regresar</a><br><br>
+
+<div class="grid">
+<script>
+for (let i = 1; i <= 6; i++) {
+  document.write(`
+    <div class='box'>
+      <div>
+        <img src='imagenes/${['edgar','chucho','nieves','doris','yo','p_oscar'][i-1]}.jpg' id='fotoPreview${i}'>
+      </div>
+
+      <div class='fields'>
+        <input id='nombre${i}' placeholder='Nombre'>
+        <select id='sexo${i}'>
+          <option value="">Sexo</option>
+          <option>Masculino</option>
+          <option>Femenino</option>
+        </select>
+        <input id='carrera${i}' placeholder='Carrera'>
+        <input id='exp${i}' placeholder='Experiencia'>
+      </div>
+    </div>
+  `);
+}
+
+function editar() {
+for (let i = 1; i <= 6; i++) {
+document.getElementById(`nombre${i}`).disabled = false;
+document.getElementById(`sexo${i}`).disabled = false;
+document.getElementById(`carrera${i}`).disabled = false;
+document.getElementById(`exp${i}`).disabled = false;
+}
+}
+
+
+function editar() {
+for (let i = 1; i <= 6; i++) {
+document.getElementById(`nombre${i}`).disabled = false;
+document.getElementById(`sexo${i}`).disabled = false;
+document.getElementById(`carrera${i}`).disabled = false;
+document.getElementById(`exp${i}`).disabled = false;
+}
+}
+
+
+// ➤ NUEVA FUNCIÓN: Editar solo el cuadro de DORIS (número 4)
+function editarDoris() {
+let i = 4;
+document.getElementById(`nombre${i}`).disabled = false;
+document.getElementById(`sexo${i}`).disabled = false;
+document.getElementById(`carrera${i}`).disabled = false;
+document.getElementById(`exp${i}`).disabled = false;
+alert("Ya puedes editar únicamente el cuadro de DORIS.");
+}
+</script>
+</div>
+
+
+<script>
+function cargarImagen(event, input, i) {
+  const img = document.getElementById(`fotoPreview${i}`);
+  const file = event.target.files[0];
+  if (file) {
+    img.src = URL.createObjectURL(file);
+    img.style.display = "block";
+    localStorage.setItem(`foto${i}`, img.src);
+  }
+}
+
+// CARGAR FOTOS Y DATOS GUARDADOS
+window.onload = () => {
+  for (let i = 1; i <= 6; i++) {
+    const saved = localStorage.getItem(`foto${i}`);
+    if (saved) {
+      const img = document.getElementById(`fotoPreview${i}`);
+      img.src = saved;
+      img.style.display = "block";
+    }
+
+    document.getElementById(`nombre${i}`).value = localStorage.getItem(`nombre${i}`) || "";
+    document.getElementById(`sexo${i}`).value = localStorage.getItem(`sexo${i}`) || "";
+    document.getElementById(`carrera${i}`).value = localStorage.getItem(`carrera${i}`) || "";
+    document.getElementById(`exp${i}`).value = localStorage.getItem(`exp${i}`) || "";
+  }
+};
+
+// GUARDAR DATOS Y BLOQUEAR CAMPOS
+function guardarDatos() {
+  for (let i = 1; i <= 6; i++) {
+    if (!localStorage.getItem(`nombre${i}`)) localStorage.setItem(`nombre${i}`, document.getElementById(`nombre${i}`).value);
+    if (!localStorage.getItem(`sexo${i}`)) localStorage.setItem(`sexo${i}`, document.getElementById(`sexo${i}`).value);
+    if (!localStorage.getItem(`carrera${i}`)) localStorage.setItem(`carrera${i}`, document.getElementById(`carrera${i}`).value);
+    if (!localStorage.getItem(`exp${i}`)) localStorage.setItem(`exp${i}`, document.getElementById(`exp${i}`).value);
+  }
+  alert("Datos guardados y bloqueados.");
+  bloquear();
+}
+
+// BLOQUEAR CAMPOS
+function bloquear() {
+  for (let i = 1; i <= 6; i++) {
+    document.getElementById(`nombre${i}`).disabled = true;
+    document.getElementById(`sexo${i}`).disabled = true;
+    document.getElementById(`carrera${i}`).disabled = true;
+    document.getElementById(`exp${i}`).disabled = true;
+  }
+}
+
+// SI YA HABÍA DATOS, BLOQUEAR
+if (localStorage.getItem('nombre1')) bloquear();
+</script>
+
+<center><button id="g" onclick="editar()">Editar Datos</button></center>
+<center><button id="g" onclick="guardarDatos()">Guardar y Bloquear Datos</button></center>
+
+</body>
+</html>
