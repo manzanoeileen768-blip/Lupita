@@ -6,36 +6,64 @@
 
 <style>
     body{
-        background: url(./izucar.jpg);
-    }
+    background: url(./izucar.jpg);
+    background-size: cover;      /* Hace que la imagen cubra la pantalla */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat;
+    margin: 0;
+}
+
+/* Contenedor centrado y adaptable */
+.contenedor-botones {
+    display: flex;
+    flex-wrap: wrap;        /* Permite que los botones bajen si no caben */
+    justify-content: center;
+    gap: 15px;              /* Espacio entre botones */
+    padding: 20px;
+}
+
+/* Botones generales */
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    font-size: clamp(14px, 2vw, 20px); /* Tamaño de letra responsivo */
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 12px;
+    transition: 0.3s;
+    text-align: center;
+    min-width: 150px;       /* Evita que se hagan muy pequeños */
+}
+
+/* Botón verde */
+.btn-1 {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.btn-1:hover {
+    background-color: #3e8e41;
+}
+
+/* Botón azul */
+.btn-2 {
+    background-color: #2196F3;
+    color: white;
+}
+
+.btn-2:hover {
+    background-color: #0b7dda;
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 600px) {
     .btn {
-        display: inline-block;
-        padding: 12px 24px;
-        margin: 10px;
+        width: 90%;      /* Botones anchos en celular */
+        padding: 14px;
         font-size: 18px;
-        font-weight: bold;
-        text-decoration: none;
-        border-radius: 12px;
-        transition: 0.3s;
     }
+}
 
-    .btn-1 {
-        background-color: #4CAF50;
-        color: white;
-    }
-
-    .btn-1:hover {
-        background-color: #3e8e41;
-    }
-
-    .btn-2 {
-        background-color: #2196F3;
-        color: white;
-    }
-
-    .btn-2:hover {
-        background-color: #0b7dda;
-    }
 </style>
 
 </head>
@@ -47,3 +75,4 @@
 </body>
 
 </html> 
+
