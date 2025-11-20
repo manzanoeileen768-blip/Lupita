@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background: url('imagenes/izucar.jpg');
+    background: url('./izucar.jpg');
     padding: 20px;
 }
 
@@ -66,4 +66,5 @@ img {
     background: #72e372;
     color: white; 
     text-decoration:none;
+
 }
